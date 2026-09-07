@@ -474,15 +474,20 @@ body {
     max-width: 500px;
     margin: 2rem auto 0;
 }
-.formulario-calculadora label { font-size: .9rem; font-weight: 600; color: #333; display: flex; flex-direction: column; gap: .35rem; }
+.formulario-calculadora label { font-size: .9rem; font-weight: 600; color: #333; display: flex; flex-direction: column; gap: .35rem; min-width: 0; }
 .formulario-calculadora input, .formulario-calculadora select {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: .6rem .7rem;
     border: 1px solid #ccc;
     border-radius: 8px;
     font: inherit;
     font-size: .95rem;
 }
-.fila-calculadora { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.fila-calculadora { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; min-width: 0; }
+.fila-calculadora label, .fila-calculadora > * { min-width: 0; }
 .formulario-calculadora button {
     padding: .8rem;
     border: none;
