@@ -598,9 +598,43 @@ body {
     border-radius: 10px;
     font-size: .85rem;
     line-height: 1.4;
+    animation: aparecer-mensaje-chat .3s ease both;
 }
-.mensaje-bot { background: #fff; border: 1px solid #e6e6e6; color: #222; align-self: flex-start; }
-.mensaje-usuario { background: #ea580c; color: #fff; align-self: flex-end; }
+@keyframes aparecer-mensaje-chat {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.mensaje-bot { background: #fff; border: 1px solid #e6e6e6; color: #222; }
+.mensaje-usuario { background: #ea580c; color: #fff; }
+.fila-mensaje-chat { display: flex; align-items: flex-end; gap: .5rem; width: 100%; }
+.fila-mensaje-bot { justify-content: flex-start; }
+.fila-mensaje-usuario { justify-content: flex-end; }
+.avatar-mensaje-chat {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #f1f1f1;
+    border: 1px solid #e6e6e6;
+    color: #ea580c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.mensaje-cargando { display: flex; align-items: center; gap: 4px; }
+.punto-cargando {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #aaa;
+    animation: rebotar-punto-cargando 1.2s infinite ease-in-out;
+}
+.punto-cargando:nth-child(2) { animation-delay: .15s; }
+.punto-cargando:nth-child(3) { animation-delay: .3s; }
+@keyframes rebotar-punto-cargando {
+    0%, 80%, 100% { transform: translateY(0); opacity: .5; }
+    40% { transform: translateY(-4px); opacity: 1; }
+}
 .formulario-chatbot {
     display: flex;
     gap: .5rem;
@@ -630,6 +664,145 @@ body {
     flex-shrink: 0;
 }
 .formulario-chatbot button:hover { background: #c2410c; }
+
+/* ---- Página de asesoría con IA (pantalla completa, sin márgenes blancos) ---- */
+body.pagina-asesoria { height: 100vh; overflow: hidden; }
+.seccion-asesoria-completa { padding: 0; margin: 0; max-width: none; }
+
+.pagina-asesoria-ia {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 73px);
+    width: 100%;
+    padding: 2.5rem 1.25rem;
+    background: radial-gradient(circle at 50% 28%, rgba(234,88,12,.16), transparent 60%), #0b0b0b;
+    color: #fff;
+}
+.pagina-asesoria-ia::before {
+    content: '';
+    position: absolute;
+    inset: -45%;
+    background: radial-gradient(circle at 30% 25%, rgba(234,88,12,.18), transparent 55%);
+    animation: girar-fondo-asesoria 20s linear infinite;
+    pointer-events: none;
+}
+.pagina-asesoria-ia > * { position: relative; z-index: 1; }
+
+.saludo-asesoria { text-align: center; margin-bottom: 1.75rem; }
+.saludo-asesoria h1 { font-size: clamp(1.4rem, 3.6vw, 2.2rem); font-weight: 600; margin: 0; color: #f5f5f5; }
+.pagina-asesoria-ia.con-mensajes .saludo-asesoria { display: none; }
+.pagina-asesoria-ia.con-mensajes { justify-content: flex-end; }
+
+.icono-asesoria {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto .9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(234,88,12,.18);
+    border: 1px solid rgba(234,88,12,.45);
+    border-radius: 50%;
+    color: #ea580c;
+    animation: pulso-icono-asesoria 2.4s ease-in-out infinite;
+}
+
+@keyframes girar-fondo-asesoria {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes pulso-icono-asesoria {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(234,88,12,.4); }
+    50% { box-shadow: 0 0 0 12px rgba(234,88,12,0); }
+}
+
+.mensajes-asesoria-ia {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+.pagina-asesoria-ia.con-mensajes .mensajes-asesoria-ia {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 55vh;
+    padding: .5rem .25rem 1.25rem;
+    scrollbar-width: none;
+}
+.pagina-asesoria-ia.con-mensajes .mensajes-asesoria-ia::-webkit-scrollbar { display: none; }
+.mensajes-asesoria-ia .mensaje-chatbot {
+    font-size: .98rem;
+    line-height: 1.55;
+}
+.mensajes-asesoria-ia .mensaje-bot {
+    max-width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    color: #e6e6e6;
+}
+.mensajes-asesoria-ia .mensaje-usuario {
+    max-width: 75%;
+    background: #262626;
+    color: #fff;
+    padding: .7rem 1.1rem;
+    border-radius: 999px;
+}
+.mensajes-asesoria-ia .mensaje-cargando { background: none; border: none; padding: .25rem 0; gap: 5px; }
+.mensajes-asesoria-ia .punto-cargando { background: #999; }
+
+.barra-entrada-asesoria {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    background: #1c1c1c;
+    border: 1px solid #2e2e2e;
+    border-radius: 999px;
+    padding: .55rem .55rem .55rem 1.25rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+.barra-entrada-asesoria:focus-within {
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234,88,12,.2);
+}
+.barra-entrada-asesoria input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font: inherit;
+    font-size: 1rem;
+}
+.barra-entrada-asesoria input::placeholder { color: #888; }
+.barra-entrada-asesoria input:focus { outline: none; }
+.barra-entrada-asesoria button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ea580c;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform .15s ease, background .15s ease;
+}
+.barra-entrada-asesoria button:hover { background: #c2410c; transform: scale(1.06); }
+
+@media (max-width: 640px) {
+    .pagina-asesoria-ia { min-height: calc(100vh - 65px); padding: 1.75rem 1rem; }
+}
 
 /* ---- Login ---- */
 .pagina-login {
