@@ -667,7 +667,14 @@ body {
 
 /* ---- Página de asesoría con IA (pantalla completa, sin márgenes blancos) ---- */
 body.pagina-asesoria { height: 100vh; overflow: hidden; }
-.seccion-asesoria-completa { padding: 0; margin: 0; max-width: none; }
+.seccion-asesoria-completa {
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
 
 .pagina-asesoria-ia {
     position: relative;
@@ -676,7 +683,8 @@ body.pagina-asesoria { height: 100vh; overflow: hidden; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 73px);
+    flex: 1;
+    min-height: 0;
     width: 100%;
     padding: 2.5rem 1.25rem;
     background: radial-gradient(circle at 50% 28%, rgba(234,88,12,.16), transparent 60%), #0b0b0b;
@@ -801,7 +809,7 @@ body.pagina-asesoria { height: 100vh; overflow: hidden; }
 .barra-entrada-asesoria button:hover { background: #c2410c; transform: scale(1.06); }
 
 @media (max-width: 640px) {
-    .pagina-asesoria-ia { min-height: calc(100vh - 65px); padding: 1.75rem 1rem; }
+    .pagina-asesoria-ia { padding: 1.5rem 1rem; }
 }
 
 /* ---- Login ---- */
