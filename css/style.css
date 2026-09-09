@@ -109,7 +109,7 @@ body {
     background: linear-gradient(135deg, #2a1206, #0d0d0d);
     border-top: 1px solid #222;
 }
-.banda-cta h2 { margin: 0 0 .5rem; }
+.banda-cta h2 { margin: 0 0 .5rem; color: #fff; }
 .banda-cta p { color: #bbb; max-width: 480px; margin: 0 auto 1.5rem; }
 
 .buscador-tienda {
