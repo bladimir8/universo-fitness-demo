@@ -666,7 +666,7 @@ body {
 .formulario-chatbot button:hover { background: #c2410c; }
 
 /* ---- Página de asesoría con IA (pantalla completa, sin márgenes blancos) ---- */
-body.pagina-asesoria { height: 100vh; overflow: hidden; }
+body.pagina-asesoria { height: 100vh; height: 100dvh; overflow: hidden; }
 .seccion-asesoria-completa {
     padding: 0;
     margin: 0;
@@ -777,6 +777,9 @@ body.pagina-asesoria { height: 100vh; overflow: hidden; }
     margin-top: 1.5rem;
     box-shadow: 0 10px 30px rgba(0,0,0,.35);
     transition: border-color .2s ease, box-shadow .2s ease;
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
 }
 .barra-entrada-asesoria:focus-within {
     border-color: #ea580c;
@@ -1208,7 +1211,7 @@ body.pagina-asesoria { height: 100vh; overflow: hidden; }
 @media (max-width: 900px) {
     .cabecera-publica { flex-wrap: wrap; justify-content: center; row-gap: .75rem; }
     .buscador-tienda { flex-basis: 100%; max-width: 100%; }
-    .cabecera-publica nav { flex-basis: 100%; justify-content: center; }
+    .cabecera-publica nav { flex-basis: 100%; justify-content: center; flex-wrap: wrap; row-gap: .5rem; }
 }
 
 @media (max-width: 600px) {
