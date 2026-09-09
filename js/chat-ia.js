@@ -25,7 +25,7 @@ window.ChatIA = (function () {
             burbuja.textContent = texto;
             fila.appendChild(burbuja);
             mensajesEl.appendChild(fila);
-            mensajesEl.scrollTop = mensajesEl.scrollHeight;
+            fila.scrollIntoView({ block: 'end' });
         }
 
         function mostrarIndicadorEscribiendo() {
@@ -35,7 +35,7 @@ window.ChatIA = (function () {
             burbuja.innerHTML = '<span class="punto-cargando"></span><span class="punto-cargando"></span><span class="punto-cargando"></span>';
             fila.appendChild(burbuja);
             mensajesEl.appendChild(fila);
-            mensajesEl.scrollTop = mensajesEl.scrollHeight;
+            fila.scrollIntoView({ block: 'end' });
             return fila;
         }
 

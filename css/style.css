@@ -665,45 +665,42 @@ body {
 }
 .formulario-chatbot button:hover { background: #c2410c; }
 
-/* ---- Página de asesoría con IA (pantalla completa, sin márgenes blancos) ---- */
-body.pagina-asesoria { height: 100vh; height: 100dvh; overflow: hidden; }
+/* ---- Página de asesoría con IA (barra de escribir siempre fija) ---- */
 .seccion-asesoria-completa {
     padding: 0;
     margin: 0;
     max-width: none;
     display: flex;
     flex-direction: column;
-    min-height: 0;
 }
 
 .pagina-asesoria-ia {
     position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     flex: 1;
-    min-height: 0;
     width: 100%;
-    padding: 2.5rem 1.25rem;
+    padding: 2.5rem 1.25rem 6rem;
     background: radial-gradient(circle at 50% 28%, rgba(234,88,12,.16), transparent 60%), #0b0b0b;
     color: #fff;
 }
 .pagina-asesoria-ia::before {
     content: '';
-    position: absolute;
+    position: fixed;
     inset: -45%;
     background: radial-gradient(circle at 30% 25%, rgba(234,88,12,.18), transparent 55%);
     animation: girar-fondo-asesoria 20s linear infinite;
     pointer-events: none;
+    z-index: 0;
 }
 .pagina-asesoria-ia > * { position: relative; z-index: 1; }
 
 .saludo-asesoria { text-align: center; margin-bottom: 1.75rem; }
 .saludo-asesoria h1 { font-size: clamp(1.4rem, 3.6vw, 2.2rem); font-weight: 600; margin: 0; color: #f5f5f5; }
 .pagina-asesoria-ia.con-mensajes .saludo-asesoria { display: none; }
-.pagina-asesoria-ia.con-mensajes { justify-content: flex-end; }
+.pagina-asesoria-ia.con-mensajes { justify-content: flex-start; }
 
 .icono-asesoria {
     width: 44px;
@@ -735,14 +732,6 @@ body.pagina-asesoria { height: 100vh; height: 100dvh; overflow: hidden; }
     flex-direction: column;
     gap: 1.1rem;
 }
-.pagina-asesoria-ia.con-mensajes .mensajes-asesoria-ia {
-    flex: 1;
-    overflow-y: auto;
-    max-height: 55vh;
-    padding: .5rem .25rem 1.25rem;
-    scrollbar-width: none;
-}
-.pagina-asesoria-ia.con-mensajes .mensajes-asesoria-ia::-webkit-scrollbar { display: none; }
 .mensajes-asesoria-ia .mensaje-chatbot {
     font-size: .98rem;
     line-height: 1.55;
@@ -765,7 +754,11 @@ body.pagina-asesoria { height: 100vh; height: 100dvh; overflow: hidden; }
 .mensajes-asesoria-ia .punto-cargando { background: #999; }
 
 .barra-entrada-asesoria {
-    width: 100%;
+    position: fixed;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    width: calc(100% - 2.5rem);
     max-width: 700px;
     display: flex;
     align-items: center;
@@ -774,12 +767,9 @@ body.pagina-asesoria { height: 100vh; height: 100dvh; overflow: hidden; }
     border: 1px solid #2e2e2e;
     border-radius: 999px;
     padding: .55rem .55rem .55rem 1.25rem;
-    margin-top: 1.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    box-shadow: 0 10px 30px rgba(0,0,0,.5);
     transition: border-color .2s ease, box-shadow .2s ease;
-    flex-shrink: 0;
-    position: sticky;
-    bottom: 0;
+    z-index: 50;
 }
 .barra-entrada-asesoria:focus-within {
     border-color: #ea580c;
@@ -812,7 +802,8 @@ body.pagina-asesoria { height: 100vh; height: 100dvh; overflow: hidden; }
 .barra-entrada-asesoria button:hover { background: #c2410c; transform: scale(1.06); }
 
 @media (max-width: 640px) {
-    .pagina-asesoria-ia { padding: 1.5rem 1rem; }
+    .pagina-asesoria-ia { padding: 1.5rem 1rem 5.5rem; }
+    .barra-entrada-asesoria { width: calc(100% - 2rem); bottom: .75rem; }
 }
 
 /* ---- Login ---- */
